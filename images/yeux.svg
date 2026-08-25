@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="YEUX-ANGULAIRE" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 2000">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #00b8ee;
+      }
+
+      .cls-2 {
+        fill: #fff;
+        stroke: #1d1d1b;
+        stroke-miterlimit: 10;
+        stroke-width: 5px;
+      }
+
+      .cls-3 {
+        fill: #1d1d1b;
+      }
+    </style>
+  </defs>
+  <g id="OEIL-DROIT">
+    <polygon id="FOND-OEIL-DROI" class="cls-2" points="370.12 642.45 275.98 642.45 228.9 689.95 275.98 737.45 370.12 737.45 417.2 689.95 370.12 642.45"/>
+    <ellipse id="PUPILLE-DROITE" class="cls-1" cx="323.05" cy="689.95" rx="47.41" ry="47.5"/>
+    <ellipse id="IRIS-DROIT" class="cls-3" cx="323.05" cy="689.95" rx="24.47" ry="24.51"/>
+  </g>
+  <g id="OEIL-GAUCHE">
+    <polygon id="FOND-OEIL-GAUCHE" class="cls-2" points="719.51 642.45 625.36 642.45 578.29 689.95 625.36 737.45 719.51 737.45 766.59 689.95 719.51 642.45"/>
+    <ellipse id="PUPILLE-GAUCHE" class="cls-1" cx="672.44" cy="689.95" rx="47.41" ry="47.5"/>
+    <ellipse id="IRIS-GAUCHE" class="cls-3" cx="672.44" cy="689.95" rx="24.47" ry="24.51"/>
+  </g>
+</svg>

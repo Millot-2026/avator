@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avatar Makor - Générateur</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <div class="app-container">
+        <div class="avatar-container">
+            <object id="layer-tete" data="images/tete.svg" type="image/svg+xml" class="avatar-layer"></object>
+            <object id="layer-cou" data="images/cou.svg" type="image/svg+xml" class="avatar-layer"></object>
+            <object id="layer-menton" data="images/menton.svg" type="image/svg+xml" class="avatar-layer"></object>
+            <object id="layer-tempes" data="images/tempes.svg" type="image/svg+xml" class="avatar-layer"></object>
+            <object id="layer-cheveux" data="images/cheveux.svg" type="image/svg+xml" class="avatar-layer"></object>
+            <object id="layer-sourcils" data="images/sourcils.svg" type="image/svg+xml" class="avatar-layer"></object>
+            <object id="layer-yeux" data="images/yeux.svg" type="image/svg+xml" class="avatar-layer"></object>
+            <object id="layer-nez" data="images/nez.svg" type="image/svg+xml" class="avatar-layer"></object>
+            <object id="layer-bouche" data="images/bouche.svg" type="image/svg+xml" class="avatar-layer"></object>
+        </div>
+
+        <div class="controls-container">
+            <h2>Personnalisation</h2>
+
+            <div class="control-group">
+                <label for="skin-color">Couleur de peau :</label>
+                <input type="color" id="skin-color" value="#e3c1b3">
+            </div>
+
+            <div class="control-group">
+                <label for="shadow-opacity-range">Intensité et couleur des ombres :</label>
+                <div class="inline-controls" style="display: flex; gap: 10px; align-items: center;">
+                    <input type="range" id="shadow-opacity-range" min="0" max="1" step="0.05" value="0.25"
+                        style="flex: 1;">
+                    <input type="color" id="shadow-color" value="#000000">
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label for="hair-top-color">Couleur de cheveux (haut) :</label>
+                <input type="color" id="hair-top-color" value="#3b2219">
+            </div>
+
+            <div class="control-group">
+                <label for="hair-sides-color">Couleur de cheveux (côtés / bas) :</label>
+                <input type="color" id="hair-sides-color" value="#cccccc">
+            </div>
+
+            <div class="control-group">
+                <label for="eyes-color">Couleur des yeux :</label>
+                <input type="color" id="eyes-color" value="#00bfff">
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>

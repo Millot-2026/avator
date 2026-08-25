@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="SOURCILS-ANGULAIRE" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 2000">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #000;
+        stroke-miterlimit: 10;
+        stroke-width: 30px;
+      }
+    </style>
+  </defs>
+  <g id="SOURCILS-ANGULAIRE-GAUCHE">
+    <polyline id="SOURCIL-GAUCHE" class="cls-1" points="789.07 547.92 585.8 547.92 553.81 593.57"/>
+  </g>
+  <g id="SOURCILS-ANGULAIRE-DROIT">
+    <polyline id="SOURCIL-DROIT" class="cls-1" points="212.93 547.92 416.2 547.92 448.19 593.57"/>
+  </g>
+</svg>

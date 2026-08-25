@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="TEMPES-ANGULAIRE" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 2000">
+  <defs>
+    <style>
+      .cls-1 {
+        opacity: .25;
+      }
+
+      .cls-2 {
+        fill: #edae98;
+      }
+    </style>
+  </defs>
+  <g id="TEMPES-DROIT" class="cls-1">
+    <polygon class="cls-2" points="100 734.68 179.37 690.05 100 662.03 100 734.68"/>
+  </g>
+  <g id="TEMPES-GAUCHE" class="cls-1">
+    <polygon class="cls-2" points="899.3 734.68 819.93 690.05 899.3 662.03 899.3 734.68"/>
+  </g>
+</svg>
