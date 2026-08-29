@@ -17,42 +17,103 @@
             <object id="layer-menton" data="images/menton.svg" type="image/svg+xml" class="avatar-layer"></object>
             <object id="layer-tempes" data="images/tempes.svg" type="image/svg+xml" class="avatar-layer"></object>
             <object id="layer-cheveux" data="images/cheveux.svg" type="image/svg+xml" class="avatar-layer"></object>
-            <object id="layer-sourcils" data="images/sourcils.svg" type="image/svg+xml" class="avatar-layer"></object>
-            <object id="layer-yeux" data="images/yeux.svg" type="image/svg+xml" class="avatar-layer"></object>
+            <object id="layer-sourcils" data="images/sourcils-01.svg" type="image/svg+xml"
+                class="avatar-layer"></object>
+            <object id="layer-yeux" data="images/yeux-01.svg" type="image/svg+xml" class="avatar-layer"></object>
             <object id="layer-nez" data="images/nez.svg" type="image/svg+xml" class="avatar-layer"></object>
             <object id="layer-bouche" data="images/bouche.svg" type="image/svg+xml" class="avatar-layer"></object>
+            <object id="layer-oreilles" data="images/oreilles.svg" type="image/svg+xml" class="avatar-layer"></object>
         </div>
 
         <div class="controls-container">
             <h2>Personnalisation</h2>
 
-            <div class="control-group">
-                <label for="skin-color">Couleur de peau :</label>
-                <input type="color" id="skin-color" value="#e3c1b3">
+            <!-- Navigation par onglets -->
+            <div class="tabs-nav">
+                <button type="button" class="tab-btn active" data-tab="tab-peau">Peau</button>
+                <button type="button" class="tab-btn" data-tab="tab-yeux">Yeux</button>
+                <button type="button" class="tab-btn" data-tab="tab-sourcils">Sourcils</button>
+                <button type="button" class="tab-btn" data-tab="tab-cheveux">Cheveux</button>
+                <button type="button" class="tab-btn" data-tab="tab-ombres">Ombres</button>
             </div>
 
-            <div class="control-group">
-                <label for="shadow-opacity-range">Intensité et couleur des ombres :</label>
-                <div class="inline-controls" style="display: flex; gap: 10px; align-items: center;">
-                    <input type="range" id="shadow-opacity-range" min="0" max="1" step="0.05" value="0.25"
-                        style="flex: 1;">
-                    <input type="color" id="shadow-color" value="#000000">
+            <!-- Contenu des onglets -->
+            <div class="tab-content active" id="tab-peau">
+                <div class="control-group">
+                    <label for="skin-color">Couleur de peau :</label>
+                    <input type="color" id="skin-color" value="#e3c1b3">
                 </div>
             </div>
 
-            <div class="control-group">
-                <label for="hair-top-color">Couleur de cheveux (haut) :</label>
-                <input type="color" id="hair-top-color" value="#3b2219">
+            <div class="tab-content" id="tab-yeux">
+                <div class="control-group">
+                    <label for="eyes-color">Couleur des yeux :</label>
+                    <input type="color" id="eyes-color" value="#00bfff">
+                </div>
+                <div class="control-group">
+                    <label>Modèle des yeux :</label>
+                    <div class="model-selector">
+                        <label class="model-option">
+                            <input type="radio" name="eyes-model" value="images/yeux-01.svg" checked>
+                            <span>Style 01</span>
+                        </label>
+                        <label class="model-option">
+                            <input type="radio" name="eyes-model" value="images/yeux-02.svg">
+                            <span>Style 02</span>
+                        </label>
+                        <label class="model-option">
+                            <input type="radio" name="eyes-model" value="images/yeux-03.svg">
+                            <span>Style 03</span>
+                        </label>
+                    </div>
+                </div>
             </div>
 
-            <div class="control-group">
-                <label for="hair-sides-color">Couleur de cheveux (côtés / bas) :</label>
-                <input type="color" id="hair-sides-color" value="#cccccc">
+            <div class="tab-content" id="tab-sourcils">
+                <div class="control-group">
+                    <label for="eyebrows-color">Couleur des sourcils :</label>
+                    <input type="color" id="eyebrows-color" value="#333333">
+                </div>
+                <div class="control-group">
+                    <label>Modèle de sourcils :</label>
+                    <div class="radio-options model-selector">
+                        <label class="model-option">
+                            <input type="radio" name="eyebrows-model" value="images/sourcils-01.svg" checked>
+                            <span>Style 01</span>
+                        </label>
+                        <label class="model-option">
+                            <input type="radio" name="eyebrows-model" value="images/sourcils-02.svg">
+                            <span>Style 02</span>
+                        </label>
+                        <label class="model-option">
+                            <input type="radio" name="eyebrows-model" value="images/sourcils-03.svg">
+                            <span>Style 03</span>
+                        </label>
+                    </div>
+                </div>
             </div>
 
-            <div class="control-group">
-                <label for="eyes-color">Couleur des yeux :</label>
-                <input type="color" id="eyes-color" value="#00bfff">
+            <div class="tab-content" id="tab-cheveux">
+                <div class="control-group">
+                    <label for="hair-top-color">Couleur de cheveux (haut) :</label>
+                    <input type="color" id="hair-top-color" value="#3b2219">
+                </div>
+
+                <div class="control-group">
+                    <label for="hair-sides-color">Couleur de cheveux (côtés / bas) :</label>
+                    <input type="color" id="hair-sides-color" value="#cccccc">
+                </div>
+            </div>
+
+            <div class="tab-content" id="tab-ombres">
+                <div class="control-group">
+                    <label for="shadow-opacity-range">Intensité et couleur des ombres :</label>
+                    <div class="inline-controls" style="display: flex; gap: 10px; align-items: center;">
+                        <input type="range" id="shadow-opacity-range" min="0" max="1" step="0.05" value="0.25"
+                            style="flex: 1;">
+                        <input type="color" id="shadow-color" value="#000000">
+                    </div>
+                </div>
             </div>
         </div>
     </div>

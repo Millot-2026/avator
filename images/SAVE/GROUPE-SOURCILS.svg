@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="TETE-MASTER-01" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 2000">
+  <g id="GROUPE-SOURCILS">
+    <polyline id="SOURCIL-ANGULAIRE-DROITE-ANGULAIRE" points="212.93 547.92 416.2 547.92 448.19 593.57" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="30"/>
+    <polyline id="SOURCIL-ANGULAIRE-GAUCHE-ANGULAIRE" points="789.07 547.92 585.8 547.92 553.81 593.57" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="30"/>
+  </g>
+</svg>

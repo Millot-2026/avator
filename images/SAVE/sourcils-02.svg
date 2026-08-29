@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="SOURCILS-ANGULAIRE-02" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 2000">
+  <g id="SOURCILS-ANGULAIRE-GAUCHE-2" data-name="SOURCILS-ANGULAIRE-GAUCHE">
+    <g id="SOURCIL-GAUCHE">
+      <path d="M789.07,547.92l-203.27,23.98,19.64-10.22-51.63,31.89c1.84-9,13.34-64.09,14.89-71.65-.35-.25,214.29,25.43,220.36,26h0Z"/>
+    </g>
+  </g>
+  <g id="SOURCILS-ANGULAIRE-DROIT-2" data-name="SOURCILS-ANGULAIRE-DROIT">
+    <g id="SOURCIL-DROIT">
+      <path d="M212.93,547.92c6.85-.85,219.82-25.91,220.36-26,1.48,7.28,13.11,62.98,14.89,71.65,0,0-51.63-31.89-51.63-31.89l19.64,10.22-203.27-23.98h0Z"/>
+    </g>
+  </g>
+</svg>

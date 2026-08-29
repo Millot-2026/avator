@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="YEUX-ARRONDIS" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 2000">
+  <g id="OEIL-GAUCHE-4" data-name="OEIL-GAUCHE">
+    <ellipse id="FOND-OEIL-GAUCHE" cx="672.44" cy="689.95" rx="92.52" ry="47.5" fill="#fff" stroke="#1d1d1b" stroke-miterlimit="10" stroke-width="5.91"/>
+    <ellipse id="PUPILLE-GAUCHE" cx="672.44" cy="689.95" rx="47.41" ry="47.5" fill="#00b8ee"/>
+    <ellipse id="IRIS-GAUCHE" cx="672.44" cy="689.95" rx="24.47" ry="24.51" fill="#1d1d1b"/>
+  </g>
+  <g id="OEIL-DROIT-4" data-name="OEIL-DROIT">
+    <ellipse id="FOND-OEIL-DROITE" cx="323.05" cy="689.95" rx="92.52" ry="47.5" fill="#fff" stroke="#1d1d1b" stroke-miterlimit="10" stroke-width="5.91"/>
+    <ellipse id="PUPILLE-DROITE" cx="323.05" cy="689.95" rx="47.41" ry="47.5" fill="#00b8ee"/>
+    <ellipse id="IRIS-DROIT" cx="323.05" cy="689.95" rx="24.47" ry="24.51" fill="#1d1d1b"/>
+  </g>
+</svg>

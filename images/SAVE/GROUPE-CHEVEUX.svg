@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="TETE-MASTER-01" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 2000">
+  <g id="GROUPE-CHEVEUX">
+    <polygon id="CHEVEUX-TOP-ANGULAIRE" points="100 400 100 200 300 50 700 50 900 200 900 400 699.57 322 500 400 299.23 322 100 400" fill="#512b27"/>
+    <polygon id="CHEVEUX-BAS-GAUCHE-ANGULAIRE" points="899.3 734.68 899.3 400 800.21 361.16 899.3 734.68" fill="#512b27"/>
+    <polygon id="CHEVEUX-BAS-DROITE-ANGULAIRE" points="100 734.68 100 400 198.05 361.16 100 734.68" fill="#512b27"/>
+    <polygon id="CERNE-CHEVEUX-ANGULAIRE" points="100 725.67 100 200 300 50 700 50 900 200 899.3 734.68 800.21 361.16 699.57 322 500 400 299.23 322 200.11 354.14 100 725.67" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="13"/>
+  </g>
+</svg>

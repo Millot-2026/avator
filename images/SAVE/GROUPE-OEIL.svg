@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="TETE-MASTER-01" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 2000">
+  <g id="GROUPE-OEIL">
+    <g id="OEIL-DROITE">
+      <polygon id="FOND-OEIL-DROITE-ANGULAIRE" points="370.12 642.45 275.98 642.45 228.9 689.95 275.98 737.45 370.12 737.45 417.2 689.95 370.12 642.45" fill="#fff" stroke="#1d1d1b" stroke-miterlimit="10" stroke-width="5"/>
+      <ellipse id="IRIS-DROITE-ANGULAIRE" cx="323.05" cy="689.95" rx="47.41" ry="47.5" fill="#00b8ee"/>
+      <ellipse id="PUPILLE-DROITE-ANGULAIRE" cx="323.05" cy="689.95" rx="24.47" ry="24.51" fill="#1d1d1b"/>
+    </g>
+    <g id="OEIL-GAUCHE">
+      <polygon id="FOND-OEIL-GAUCHE-ANGULAIRE" points="719.51 642.45 625.36 642.45 578.29 689.95 625.36 737.45 719.51 737.45 766.59 689.95 719.51 642.45" fill="#fff" stroke="#1d1d1b" stroke-miterlimit="10" stroke-width="5"/>
+      <ellipse id="IRIS-GAUCHE-ANGULAIRE" cx="672.44" cy="689.95" rx="47.41" ry="47.5" fill="#00b8ee"/>
+      <ellipse id="PUPILLE-GAUCHE-ANGULAIRE" cx="672.44" cy="689.95" rx="24.47" ry="24.51" fill="#1d1d1b"/>
+    </g>
+  </g>
+</svg>

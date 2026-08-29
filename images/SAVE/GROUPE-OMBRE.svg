@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="TETE-MASTER-01" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 2000">
+  <g id="GROUPE-OMBRE">
+    <polygon id="OMBRE-COU-ANGULAIRE" points="599.5 1400 399.97 1400 300 1304.11 300 1367.4 394.85 1456.44 602.15 1456.44 700 1362.42 700 1305.98 599.5 1400" fill="#edae98" opacity=".25"/>
+    <g id="OMBRE-TEMPE-GAUCHE-ANGULAIRE" opacity=".25">
+      <polygon points="900 734.68 820.63 690.05 900 662.03 900 734.68" fill="#edae98"/>
+    </g>
+    <g id="OMBRE-TEMPE-DROITE-ANGULAIRE" opacity=".25">
+      <polygon points="100 662.03 179.37 706.66 100 734.68 100 662.03" fill="#edae98"/>
+    </g>
+    <g id="OMBRE-CREU-JOUE-GAUCHE-ANGULAIRE" opacity=".25">
+      <polygon points="899.3 734.68 899.3 1100 753.96 1245.52 753.79 1038.69 868.7 890.65 899.3 734.68" fill="#edae98"/>
+    </g>
+    <g id="OMBRE-CREU-JOUE-DROITE-ANGULAIRE" opacity=".25">
+      <polygon points="100 734.68 100 1100 245.33 1245.52 245.51 1038.69 130.59 890.65 100 734.68" fill="#edae98"/>
+    </g>
+  </g>
+</svg>

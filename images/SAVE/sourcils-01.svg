@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="SOURCILS-ANGULAIRE-01" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 309.11">
+  <g id="SOURCILS-ANGULAIRE-GAUCHE">
+    <g id="SOURCIL-GAUCHE">
+      <polygon points="552.4 196.83 527.83 179.61 564.3 127.57 775.37 127.57 775.37 157.57 579.91 157.57 552.4 196.83"/>
+    </g>
+  </g>
+  <g id="SOURCILS-ANGULAIRE-DROIT">
+    <g id="SOURCIL-DROIT">
+      <polygon points="422.21 196.83 394.7 157.57 199.24 157.57 199.24 127.57 410.31 127.57 446.78 179.61 422.21 196.83"/>
+    </g>
+  </g>
+</svg>

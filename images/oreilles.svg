@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 2000">
+  <g id="OREILLE-GAUCHE">
+    <polygon id="OREILLE-GAUCHE-2" data-name="OREILLE-GAUCHE" points="953.64 642.45 953.64 685.7 940.82 685.7 930.82 909.35 937.64 926.35 937.64 962.2 900 962.2 900 642.45 953.64 642.45" fill="#edae98" stroke="#1d1d1b" stroke-miterlimit="10" stroke-width="5"/>
+  </g>
+  <g id="OREILLE-DROITE">
+    <polygon id="OREILLE-DROITE-2" data-name="OREILLE-DROITE" points="46.36 642.45 46.36 685.7 59.18 685.7 69.18 909.35 62.36 926.35 62.36 962.2 100 962.2 100 642.45 46.36 642.45" fill="#edae98" stroke="#1d1d1b" stroke-miterlimit="10" stroke-width="5"/>
+  </g>
+</svg>
