@@ -1,27 +1,70 @@
 window.addEventListener('DOMContentLoaded', () => {
 
+    // 1. Dictionnaire principal de ciblage (Correction des ID pour correspondre aux SVG réels)
     const COLOR_MAPPING = {
         'skin-color': [
-            { layerId: 'layer-tete', targetIds: ['VISAGE-ANGULAIRE', 'VISAGE-ARRONDIS', 'tete'] },
-            { layerId: 'layer-cou', targetIds: ['cou', 'FORME-COU'] },
-            { layerId: 'layer-oreilles', targetIds: ['OREILLE-DROITE-ANGULAIRE', 'OREILLE-GAUCHE-ANGULAIRE', 'OREILLE-DROITE', 'OREILLE-GAUCHE'] }
+            { layerId: 'layer-tete', targetIds: ['FILL-PEAU-VISAGE-ANGULAIRE', 'VISAGE-ANGULAIRE', 'VISAGE-ARRONDIS', 'TETE'] },
+            { layerId: 'layer-cou', targetIds: ['FILL-PEAU-COU-ANGULAIRE', 'COU', 'COU-ANGULAIRE', 'FORME-COU'] },
+            { layerId: 'layer-oreilles', targetIds: ['FILL-PEAU-OREILLE-DROITE', 'FILL-PEAU-OREILLE-GAUCHE', 'OREILLE-DROITE-ANGULAIRE', 'OREILLE-GAUCHE-ANGULAIRE', 'OREILLE-DROITE', 'OREILLE-GAUCHE'] },
+            { layerId: 'layer-menton', targetIds: ['MENTON-ANGULAIRE'] }
         ],
         'shadow-color': [
-            { layerId: 'layer-ombres', targetIds: ['OMBRE-COU-ANGULAIRE', 'OMBRE-BOUCHE', 'OMBRE-BAS-ANGULAIRE-GAUCHE', 'OMBRE-BAS-ANGULAIRE-DROIT', 'OMBRE-TEMPES-DROIT', 'OMBRE-TEMPES-GAUCHE'] }
+            {
+                layerId: 'layer-ombres', targetIds: [
+                    'FILL-OMBRE-COU-ANGULAIRE', 'FILL-OMBRE-BOUCHE',
+                    'FILL-OMBRE-BAS-ANGULAIRE-GAUCHE', 'FILL-OMBRE-BAS-ANGULAIRE-DROIT',
+                    'FILL-OMBRE-TEMPES-DROIT', 'FILL-OMBRE-TEMPES-GAUCHE',
+                    'OMBRE-COU-ANGULAIRE', 'OMBRE-BOUCHE', 'OMBRE-BAS-ANGULAIRE-GAUCHE',
+                    'OMBRE-BAS-ANGULAIRE-DROIT', 'OMBRE-TEMPES-DROIT', 'OMBRE-TEMPES-GAUCHE'
+                ]
+            }
         ],
         'hair-top-color': [
-            { layerId: 'layer-cheveux', targetIds: ['CHEVEUX-TOP-ANGULAIRE', 'CHEVEUX-TOP', 'CHEVEUX-ARRONDIS'] }
+            // CORRECTION ICI : Ajout des vrais IDs présents dans le fichier SVG en plus des potentiels préfixes FILL-
+            { layerId: 'layer-cheveux', targetIds: ['FILL-CHEVEUX-TOP', 'CHEVEUX-TOP', 'CHEVEUX-TOP-ANGULAIRE', 'CHEVEUX-ARRONDIS'] }
         ],
         'eyebrows-color': [
             { layerId: 'layer-sourcils', targetIds: ['SOURCIL-DROIT', 'SOURCIL-GAUCHE'] }
         ],
         'hair-sides-color': [
-            { layerId: 'layer-cheveux', targetIds: ['CHEVEUX-TEMPE-DROIT', 'CHEVEUX-TEMPE-GAUCHE'] }
+            { layerId: 'layer-cheveux', targetIds: ['FILL-CHEVEUX-TEMPE-DROIT', 'FILL-CHEVEUX-TEMPE-GAUCHE', 'CHEVEUX-TEMPE-DROIT', 'CHEVEUX-TEMPE-GAUCHE'] }
         ],
         'eyes-color': [
-            { layerId: 'layer-yeux', targetIds: ['IRIS-GAUCHE', 'IRIS-DROIT', 'IRIS-GAUCHE-ANGULAIRE', 'IRIS-DROITE-ANGULAIRE'] }
+            {
+                layerId: 'layer-yeux', targetIds: [
+                    'YEUX-01-FILL-IRIS-DROIT', 'YEUX-01-FILL-IRIS-GAUCHE',
+                    'YEUX-02-FILL-IRIS-DROIT', 'YEUX-02-FILL-IRIS-GAUCHE',
+                    'YEUX-03-FILL-IRIS-DROIT', 'YEUX-03-FILL-IRIS-GAUCHE',
+                    'FILL-IRIS-DROIT-YEUX-ARRONDIS', 'FILL-IRIS-GAUCHE-YEUX-ARRONDIS',
+                    'IRIS-GAUCHE', 'IRIS-DROIT', 'IRIS-GAUCHE-ANGULAIRE', 'IRIS-DROITE-ANGULAIRE'
+                ]
+            }
         ]
     };
+
+    // 2. PARE-FEU INVIOLABLE POUR LES CONTOURS NOIRS
+    // Aucun de ces IDs ne pourra jamais recevoir de couleur, quoi qu'il arrive.
+    const BLACKLIST_IDS = [
+        'creux-joue-droit',
+        'creux-joue-gauche',
+        'creux-joue-gauch',
+        'cerne-cheveux',
+        'cheveux-top-cerne',
+        'cerne-bouche'
+    ];
+
+    // Vérifie si l'ID doit être explicitement sanctuarisé (protégé)
+    function isProtectedTrace(id) {
+        if (!id) return false;
+        const normalized = id.trim().toLowerCase();
+        // Protège tout ce qui commence par "trace-" OU tout élément de la blacklist
+        if (normalized.startsWith('trace-')) return true;
+        return BLACKLIST_IDS.some(blackId =>
+            normalized === blackId ||
+            normalized.startsWith(`${blackId}-`) ||
+            normalized.startsWith(`${blackId}_`)
+        );
+    }
 
     const shadowOpacityInput = document.getElementById('shadow-opacity-range');
 
@@ -34,41 +77,53 @@ window.addEventListener('DOMContentLoaded', () => {
                 const svgDoc = objElement.contentDocument || (objElement.getSVGDocument ? objElement.getSVGDocument() : null);
                 if (!svgDoc) return;
 
-                if (layerId === 'layer-ombres') {
-                    svgDoc.querySelectorAll('path, polygon, rect, circle, ellipse, polyline, line').forEach(el => {
-                        if (config.color) {
-                            el.style.setProperty('fill', config.color, 'important');
-                            el.setAttribute('fill', config.color);
-                        }
-                        if (config.opacity !== undefined) {
-                            el.style.setProperty('opacity', config.opacity, 'important');
-                            el.setAttribute('opacity', config.opacity);
-                            el.style.removeProperty('fill-opacity');
-                            el.removeAttribute('fill-opacity');
-                        }
-                    });
-                    return;
-                }
-
                 targetIds.forEach(targetId => {
                     const searchId = targetId.toLowerCase();
+
                     svgDoc.querySelectorAll('*').forEach(el => {
                         const currentId = (el.getAttribute('id') || '').trim().toLowerCase();
+                        if (!currentId) return;
 
-                        // Sécurité stricte uniquement pour les cheveux, correspondance souple pour la peau et le reste
-                        const isMatch = (layerId === 'layer-cheveux')
-                            ? (currentId === searchId)
-                            : (currentId === searchId || currentId.includes(searchId));
+                        // Si le calque entier (ex: un groupe <g id="trace-visage">) est protégé, on l'ignore.
+                        if (isProtectedTrace(currentId)) return;
+
+                        const isMatch = currentId === searchId ||
+                            currentId.startsWith(`${searchId}-`) ||
+                            currentId.startsWith(`${searchId}_`);
 
                         if (isMatch) {
-                            if (config.color) {
-                                el.style.setProperty('fill', config.color, 'important');
-                                el.setAttribute('fill', config.color);
-                            }
-                            if (config.opacity !== undefined) {
-                                el.style.setProperty('opacity', config.opacity, 'important');
-                                el.setAttribute('opacity', config.opacity);
-                            }
+                            const applyStyles = (element, isChild = false) => {
+                                const elemId = (element.getAttribute('id') || '').trim().toLowerCase();
+
+                                // SECURITÉ : Bloque toute injection de couleur sur les sous-tracés
+                                if (isProtectedTrace(elemId)) return;
+
+                                if (config.color) {
+                                    if (elemId.includes('sourcil')) {
+                                        element.style.setProperty('stroke', config.color, 'important');
+                                        element.setAttribute('stroke', config.color);
+                                    } else {
+                                        element.style.setProperty('fill', config.color, 'important');
+                                        element.setAttribute('fill', config.color);
+                                    }
+                                }
+
+                                if (config.opacity !== undefined && !isChild) {
+                                    element.style.setProperty('opacity', config.opacity, 'important');
+                                    element.setAttribute('opacity', config.opacity);
+                                    element.style.removeProperty('fill-opacity');
+                                    element.removeAttribute('fill-opacity');
+                                }
+                            };
+
+                            // On applique au conteneur principal ciblé
+                            applyStyles(el);
+
+                            // On traverse tous les enfants géométriques, tout en garantissant
+                            // que isProtectedTrace protégera les éventuels tracés imbriqués sans ID explicite.
+                            el.querySelectorAll('path, polygon, rect, circle, ellipse, polyline, line').forEach(child => {
+                                applyStyles(child, true);
+                            });
                         }
                     });
                 });
@@ -83,7 +138,7 @@ window.addEventListener('DOMContentLoaded', () => {
             objElement.addEventListener('load', executeUpdate, { once: true });
         }
         setTimeout(executeUpdate, 100);
-        setTimeout(executeUpdate, 400);
+        setTimeout(executeUpdate, 400); // Sécurité asynchrone pour les navigateurs lents
     }
 
     function applyAllMappings() {
