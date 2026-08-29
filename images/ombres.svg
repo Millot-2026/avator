@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="OMBRES" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 2000">
+  <g id="OMBRE-TEMPES-GAUCHE">
+    <polygon points="899.3 734.68 819.93 690.05 899.3 662.03 899.3 734.68" fill="#edae98"/>
+  </g>
+  <g id="OMBRE-TEMPES-DROIT">
+    <polygon points="100 734.68 179.37 690.05 100 662.03 100 734.68" fill="#edae98"/>
+  </g>
+  <g id="OMBRE-BAS-ANGULAIRE-DROIT">
+    <polygon points="100 734.68 100 1100 245.33 1245.52 245.51 1038.69 130.59 890.65 100 734.68" fill="#edae98"/>
+  </g>
+  <g id="OMBRE-BAS-ANGULAIRE-GAUCHE">
+    <polygon points="899.3 734.68 899.3 1100 753.96 1245.52 753.79 1038.69 868.7 890.65 899.3 734.68" fill="#edae98"/>
+  </g>
+  <g id="OMBRE-BOUCHE">
+    <polygon points="598.72 1231 542.23 1289.02 501.28 1275.41 457.34 1289.02 401.28 1231 598.72 1231" fill="#edae98"/>
+  </g>
+  <polygon id="OMBRE-COU-ANGULAIRE" points="602.15 1400 394.85 1400 300 1305.98 300 1367.4 394.85 1456.44 602.15 1456.44 700 1362.42 700 1305.98 602.15 1400" fill="#edae98"/>
+</svg>

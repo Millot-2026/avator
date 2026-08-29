@@ -14,8 +14,7 @@
         <div class="avatar-container">
             <object id="layer-tete" data="images/tete.svg" type="image/svg+xml" class="avatar-layer"></object>
             <object id="layer-cou" data="images/cou.svg" type="image/svg+xml" class="avatar-layer"></object>
-            <object id="layer-menton" data="images/menton.svg" type="image/svg+xml" class="avatar-layer"></object>
-            <object id="layer-tempes" data="images/tempes.svg" type="image/svg+xml" class="avatar-layer"></object>
+            <object id="layer-ombres" data="images/ombres.svg" type="image/svg+xml" class="avatar-layer"></object>
             <object id="layer-cheveux" data="images/cheveux.svg" type="image/svg+xml" class="avatar-layer"></object>
             <object id="layer-sourcils" data="images/sourcils-01.svg" type="image/svg+xml"
                 class="avatar-layer"></object>
@@ -41,14 +40,20 @@
             <div class="tab-content active" id="tab-peau">
                 <div class="control-group">
                     <label for="skin-color">Couleur de peau :</label>
-                    <input type="color" id="skin-color" value="#e3c1b3">
+                    <div style="display: flex; gap: 10px; align-items: center;">
+                        <input type="color" id="skin-color" value="#e3c1b3">
+                        <button type="button" class="btn-copier">Copier</button>
+                    </div>
                 </div>
             </div>
 
             <div class="tab-content" id="tab-yeux">
                 <div class="control-group">
                     <label for="eyes-color">Couleur des yeux :</label>
-                    <input type="color" id="eyes-color" value="#00bfff">
+                    <div style="display: flex; gap: 10px; align-items: center;">
+                        <input type="color" id="eyes-color" value="#00bfff">
+                        <button type="button" class="btn-copier">Copier</button>
+                    </div>
                 </div>
                 <div class="control-group">
                     <label>Modèle des yeux :</label>
@@ -72,7 +77,10 @@
             <div class="tab-content" id="tab-sourcils">
                 <div class="control-group">
                     <label for="eyebrows-color">Couleur des sourcils :</label>
-                    <input type="color" id="eyebrows-color" value="#333333">
+                    <div style="display: flex; gap: 10px; align-items: center;">
+                        <input type="color" id="eyebrows-color" value="#333333">
+                        <button type="button" class="btn-copier">Copier</button>
+                    </div>
                 </div>
                 <div class="control-group">
                     <label>Modèle de sourcils :</label>
@@ -96,12 +104,18 @@
             <div class="tab-content" id="tab-cheveux">
                 <div class="control-group">
                     <label for="hair-top-color">Couleur de cheveux (haut) :</label>
-                    <input type="color" id="hair-top-color" value="#3b2219">
+                    <div style="display: flex; gap: 10px; align-items: center;">
+                        <input type="color" id="hair-top-color" value="#3b2219">
+                        <button type="button" class="btn-copier">Copier</button>
+                    </div>
                 </div>
 
                 <div class="control-group">
                     <label for="hair-sides-color">Couleur de cheveux (côtés / bas) :</label>
-                    <input type="color" id="hair-sides-color" value="#cccccc">
+                    <div style="display: flex; gap: 10px; align-items: center;">
+                        <input type="color" id="hair-sides-color" value="#cccccc">
+                        <button type="button" class="btn-copier">Copier</button>
+                    </div>
                 </div>
             </div>
 
@@ -112,6 +126,7 @@
                         <input type="range" id="shadow-opacity-range" min="0" max="1" step="0.05" value="0.25"
                             style="flex: 1;">
                         <input type="color" id="shadow-color" value="#000000">
+                        <button type="button" class="btn-copier">Copier</button>
                     </div>
                 </div>
             </div>

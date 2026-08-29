@@ -7,9 +7,7 @@ window.addEventListener('DOMContentLoaded', () => {
             { layerId: 'layer-oreilles', targetIds: ['OREILLE-DROITE-ANGULAIRE', 'OREILLE-GAUCHE-ANGULAIRE', 'OREILLE-DROITE', 'OREILLE-GAUCHE'] }
         ],
         'shadow-color': [
-            { layerId: 'layer-menton', targetIds: ['OMBRE-BAS-ANGULAIR-DROIT', 'OMBRE-BAS-ANGULAIR-GAUCHE', 'MENTON-ARRONDIS'] },
-            { layerId: 'layer-tempes', targetIds: ['OMBRE-TEMPE-DROITE-ANGULAIRE', 'OMBRE-TEMPE-GAUCHE-ANGULAIRE', 'OMBRE-CREU-JOUE-DROITE-ANGULAIRE', 'OMBRE-CREU-JOUE-GAUCHE-ANGULAIRE', 'TEMPES-GAUCHE', 'TEMPES-DROIT', 'OMBRE-BOUCHE', 'OMBRE-COU'] },
-            { layerId: 'layer-cou', targetIds: ['ombre-cou-angulaire'] }
+            { layerId: 'layer-ombres', targetIds: ['OMBRE-COU-ANGULAIRE', 'OMBRE-BOUCHE', 'OMBRE-BAS-ANGULAIRE-GAUCHE', 'OMBRE-BAS-ANGULAIRE-DROIT', 'OMBRE-TEMPES-DROIT', 'OMBRE-TEMPES-GAUCHE'] }
         ],
         'hair-top-color': [
             { layerId: 'layer-cheveux', targetIds: ['CHEVEUX-TOP-ANGULAIRE', 'CHEVEUX-TOP', 'CHEVEUX-ARRONDIS'] }
@@ -18,7 +16,7 @@ window.addEventListener('DOMContentLoaded', () => {
             { layerId: 'layer-sourcils', targetIds: ['SOURCIL-DROIT', 'SOURCIL-GAUCHE'] }
         ],
         'hair-sides-color': [
-            { layerId: 'layer-cheveux', targetIds: ['CHEVEUX-BAS-DROITE-ANGULAIRE', 'CHEVEUX-BAS-GAUCHE-ANGULAIRE', 'CERNE-CHEVEUX-ANGULAIRE', 'CHEVEUX-TEMPE-DROIT', 'CHEVEUX-TEMPE-GAUCHE', 'CHEVEUX-TOP-CERNE'] }
+            { layerId: 'layer-cheveux', targetIds: ['CHEVEUX-TEMPE-DROIT', 'CHEVEUX-TEMPE-GAUCHE'] }
         ],
         'eyes-color': [
             { layerId: 'layer-yeux', targetIds: ['IRIS-GAUCHE', 'IRIS-DROIT', 'IRIS-GAUCHE-ANGULAIRE', 'IRIS-DROITE-ANGULAIRE'] }
@@ -36,33 +34,41 @@ window.addEventListener('DOMContentLoaded', () => {
                 const svgDoc = objElement.contentDocument || (objElement.getSVGDocument ? objElement.getSVGDocument() : null);
                 if (!svgDoc) return;
 
+                if (layerId === 'layer-ombres') {
+                    svgDoc.querySelectorAll('path, polygon, rect, circle, ellipse, polyline, line').forEach(el => {
+                        if (config.color) {
+                            el.style.setProperty('fill', config.color, 'important');
+                            el.setAttribute('fill', config.color);
+                        }
+                        if (config.opacity !== undefined) {
+                            el.style.setProperty('opacity', config.opacity, 'important');
+                            el.setAttribute('opacity', config.opacity);
+                            el.style.removeProperty('fill-opacity');
+                            el.removeAttribute('fill-opacity');
+                        }
+                    });
+                    return;
+                }
+
                 targetIds.forEach(targetId => {
                     const searchId = targetId.toLowerCase();
-                    const allElements = svgDoc.querySelectorAll('*');
-
-                    allElements.forEach(el => {
+                    svgDoc.querySelectorAll('*').forEach(el => {
                         const currentId = (el.getAttribute('id') || '').trim().toLowerCase();
-                        const isAllowedMatch = (currentId === searchId || currentId.includes(searchId));
 
-                        if (isAllowedMatch) {
-                            const applyStyles = (element) => {
-                                if (config.color) {
-                                    if (currentId.includes('cerne') || currentId.includes('trace') || currentId.includes('sourcil')) {
-                                        element.style.setProperty('stroke', config.color, 'important');
-                                        element.setAttribute('stroke', config.color);
-                                    } else {
-                                        element.style.setProperty('fill', config.color, 'important');
-                                        element.setAttribute('fill', config.color);
-                                    }
-                                }
-                                if (config.opacity !== undefined) {
-                                    element.style.setProperty('opacity', config.opacity, 'important');
-                                    element.setAttribute('opacity', config.opacity);
-                                }
-                            };
+                        // Sécurité stricte uniquement pour les cheveux, correspondance souple pour la peau et le reste
+                        const isMatch = (layerId === 'layer-cheveux')
+                            ? (currentId === searchId)
+                            : (currentId === searchId || currentId.includes(searchId));
 
-                            applyStyles(el);
-                            el.querySelectorAll('path, polygon, rect, circle, ellipse, g, polyline, line').forEach(applyStyles);
+                        if (isMatch) {
+                            if (config.color) {
+                                el.style.setProperty('fill', config.color, 'important');
+                                el.setAttribute('fill', config.color);
+                            }
+                            if (config.opacity !== undefined) {
+                                el.style.setProperty('opacity', config.opacity, 'important');
+                                el.setAttribute('opacity', config.opacity);
+                            }
                         }
                     });
                 });
@@ -76,7 +82,8 @@ window.addEventListener('DOMContentLoaded', () => {
         } else {
             objElement.addEventListener('load', executeUpdate, { once: true });
         }
-        setTimeout(executeUpdate, 150);
+        setTimeout(executeUpdate, 100);
+        setTimeout(executeUpdate, 400);
     }
 
     function applyAllMappings() {
@@ -251,11 +258,6 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    const skinInput = document.getElementById('skin-color');
-    if (skinInput) {
-        skinInput.addEventListener('input', () => applyAllMappings());
-    }
-
     if (shadowOpacityInput) {
         shadowOpacityInput.addEventListener('input', () => applyAllMappings());
     }
@@ -265,4 +267,20 @@ window.addEventListener('DOMContentLoaded', () => {
         applyEyebrowsColor();
     }, 200);
 
+});
+
+document.querySelectorAll('.btn-copier').forEach(button => {
+    button.addEventListener('click', (e) => {
+        const colorInput = e.target.previousElementSibling;
+        if (colorInput && colorInput.type === 'color') {
+            const couleur = colorInput.value;
+            navigator.clipboard.writeText(couleur).then(() => {
+                const texteOriginal = e.target.textContent;
+                e.target.textContent = 'Copié !';
+                setTimeout(() => {
+                    e.target.textContent = texteOriginal;
+                }, 1200);
+            });
+        }
+    });
 });
