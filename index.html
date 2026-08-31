@@ -12,129 +12,96 @@
 
     <div class="app-container">
         <div class="avatar-container">
-            <object id="layer-tete" data="images/tete.svg" type="image/svg+xml" class="avatar-layer"></object>
-            <object id="layer-cou" data="images/cou.svg" type="image/svg+xml" class="avatar-layer"></object>
-            <object id="layer-ombres" data="images/ombres.svg" type="image/svg+xml" class="avatar-layer"></object>
-            <object id="layer-cheveux" data="images/cheveux.svg" type="image/svg+xml" class="avatar-layer"></object>
-            <object id="layer-sourcils" data="images/sourcils-01.svg" type="image/svg+xml"
-                class="avatar-layer"></object>
-            <object id="layer-yeux" data="images/yeux-01.svg" type="image/svg+xml" class="avatar-layer"></object>
-            <object id="layer-nez" data="images/nez.svg" type="image/svg+xml" class="avatar-layer"></object>
-            <object id="layer-bouche" data="images/bouche.svg" type="image/svg+xml" class="avatar-layer"></object>
-            <object id="layer-menton" data="images/menton.svg" type="image/svg+xml" class="avatar-layer"></object>
-            <object id="layer-oreilles" data="images/oreilles.svg" type="image/svg+xml" class="avatar-layer"></object>
+            <object id="persona-homme" data="images/IDENTITE-PERSONA-HOMME.svg" type="image/svg+xml"
+                class="avatar-layer persona-svg active"></object>
+            <object id="persona-femme" data="images/IDENTITE-PERSONA-FEMME.svg" type="image/svg+xml"
+                class="avatar-layer persona-svg" style="display:none;"></object>
+            <object id="persona-garcon" data="images/IDENTITE-PERSONA-GARCON.svg" type="image/svg+xml"
+                class="avatar-layer persona-svg" style="display:none;"></object>
+            <object id="persona-fille" data="images/IDENTITE-PERSONA-FILLE.svg" type="image/svg+xml"
+                class="avatar-layer persona-svg" style="display:none;"></object>
         </div>
 
         <div class="controls-container">
             <h2>Personnalisation</h2>
 
-            <!-- Navigation par onglets -->
             <div class="tabs-nav">
-                <button type="button" class="tab-btn active" data-tab="tab-peau">Peau</button>
-                <button type="button" class="tab-btn" data-tab="tab-yeux">Yeux</button>
-                <button type="button" class="tab-btn" data-tab="tab-sourcils">Sourcils</button>
+                <button type="button" class="tab-btn active" data-tab="tab-peau">Personnage</button>
                 <button type="button" class="tab-btn" data-tab="tab-cheveux">Cheveux</button>
-                <button type="button" class="tab-btn" data-tab="tab-ombres">Ombres</button>
+                <button type="button" class="tab-btn" data-tab="tab-vetements">Vêtements</button>
+                <button type="button" class="tab-btn" data-tab="tab-export">Export</button>
             </div>
 
-            <!-- Contenu des onglets -->
             <div class="tab-content active" id="tab-peau">
                 <div class="control-group">
-                    <label for="skin-color">Couleur de peau :</label>
-                    <div style="display: flex; gap: 10px; align-items: center;">
-                        <input type="color" id="skin-color" value="#e3c1b3">
-                        <button type="button" class="btn-copier">Copier</button>
+                    <label>Modèle de personnage :</label>
+                    <div class="model-selector" style="flex-direction: column; gap: 8px;">
+                        <label class="model-option">
+                            <input type="radio" name="persona-model" value="persona-homme" checked>
+                            <span>Homme</span>
+                        </label>
+                        <label class="model-option">
+                            <input type="radio" name="persona-model" value="persona-femme">
+                            <span>Femme</span>
+                        </label>
+                        <label class="model-option">
+                            <input type="radio" name="persona-model" value="persona-garcon">
+                            <span>Garçon</span>
+                        </label>
+                        <label class="model-option">
+                            <input type="radio" name="persona-model" value="persona-fille">
+                            <span>Fille</span>
+                        </label>
                     </div>
                 </div>
-            </div>
 
-            <div class="tab-content" id="tab-yeux">
                 <div class="control-group">
-                    <label for="eyes-color">Couleur des yeux :</label>
+                    <label for="chaire-color">Couleur de chaire :</label>
                     <div style="display: flex; gap: 10px; align-items: center;">
-                        <input type="color" id="eyes-color" value="#00bfff">
+                        <input type="color" id="chaire-color" value="#f9cfe3">
                         <button type="button" class="btn-copier">Copier</button>
-                    </div>
-                </div>
-                <div class="control-group">
-                    <label>Modèle des yeux :</label>
-                    <div class="model-selector">
-                        <label class="model-option">
-                            <input type="radio" name="eyes-model" value="images/yeux-01.svg" checked>
-                            <span>Style 01</span>
-                        </label>
-                        <label class="model-option">
-                            <input type="radio" name="eyes-model" value="images/yeux-02.svg">
-                            <span>Style 02</span>
-                        </label>
-                        <label class="model-option">
-                            <input type="radio" name="eyes-model" value="images/yeux-03.svg">
-                            <span>Style 03</span>
-                        </label>
-                    </div>
-                </div>
-            </div>
-
-            <div class="tab-content" id="tab-sourcils">
-                <div class="control-group">
-                    <label for="eyebrows-color">Couleur des sourcils :</label>
-                    <div style="display: flex; gap: 10px; align-items: center;">
-                        <input type="color" id="eyebrows-color" value="#333333">
-                        <button type="button" class="btn-copier">Copier</button>
-                    </div>
-                </div>
-                <div class="control-group">
-                    <label>Modèle de sourcils :</label>
-                    <div class="radio-options model-selector">
-                        <label class="model-option">
-                            <input type="radio" name="eyebrows-model" value="images/sourcils-01.svg" checked>
-                            <span>Style 01</span>
-                        </label>
-                        <label class="model-option">
-                            <input type="radio" name="eyebrows-model" value="images/sourcils-02.svg">
-                            <span>Style 02</span>
-                        </label>
-                        <label class="model-option">
-                            <input type="radio" name="eyebrows-model" value="images/sourcils-03.svg">
-                            <span>Style 03</span>
-                        </label>
                     </div>
                 </div>
             </div>
 
             <div class="tab-content" id="tab-cheveux">
                 <div class="control-group">
-                    <label for="hair-top-color">Couleur de cheveux (haut) :</label>
+                    <label for="hair-color">Couleur de cheveux :</label>
                     <div style="display: flex; gap: 10px; align-items: center;">
-                        <input type="color" id="hair-top-color" value="#3b2219">
-                        <button type="button" class="btn-copier">Copier</button>
-                    </div>
-                </div>
-
-                <div class="control-group">
-                    <label for="hair-sides-color">Couleur de cheveux (côtés / bas) :</label>
-                    <div style="display: flex; gap: 10px; align-items: center;">
-                        <input type="color" id="hair-sides-color" value="#cccccc">
+                        <input type="color" id="hair-color" value="#1d1d1b">
                         <button type="button" class="btn-copier">Copier</button>
                     </div>
                 </div>
             </div>
 
-            <div class="tab-content" id="tab-ombres">
+            <div class="tab-content" id="tab-vetements">
                 <div class="control-group">
-                    <label for="shadow-opacity-range">Intensité et couleur des ombres :</label>
-                    <div class="inline-controls" style="display: flex; gap: 10px; align-items: center;">
-                        <input type="range" id="shadow-opacity-range" min="0" max="1" step="0.05" value="0.25"
-                            style="flex: 1;">
-                        <input type="color" id="shadow-color" value="#000000">
+                    <label for="clothes-color">Couleur du vêtement :</label>
+                    <div style="display: flex; gap: 10px; align-items: center;">
+                        <input type="color" id="clothes-color" value="#7c7a2a">
                         <button type="button" class="btn-copier">Copier</button>
                     </div>
+                </div>
+                <div class="control-group">
+                    <label for="collar-color">Couleur du col (enfants) :</label>
+                    <div style="display: flex; gap: 10px; align-items: center;">
+                        <input type="color" id="collar-color" value="#bcb342">
+                        <button type="button" class="btn-copier">Copier</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="tab-export">
+                <div class="control-group">
+                    <label>Téléchargement vectoriel :</label>
+                    <button type="button" id="btn-export-svg"
+                        style="padding: 10px; cursor: pointer; width: 100%;">Télécharger l'avatar (SVG)</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <script src="js/script.js"></script>
+    <script src="js/script.js?v=18"></script>
 </body>
 
 </html>

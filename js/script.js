@@ -6,6 +6,14 @@
    Problème : Le calque du visage devenait noir car le mot-clé "hair" était contenu dans le mot "chaire" (c-hair-e). La fonction includes() écrasait la couleur de la peau par celle des cheveux (noire).
    Correction : Suppression des mots-clés anglais ("hair", "clothes") du COLOR_MAPPING pour éviter le conflit de chaîne de caractères.
 */
+/* MESSAGE POUR MOI-MÊME :
+   Problème : Il manquait une fonction pour exporter le travail finalisé.
+   Correction : Ajout d'un système de sérialisation XML qui capture le DOM du SVG avec ses nouvelles couleurs et génère un fichier téléchargeable à la volée.
+*/
+/* MESSAGE POUR MOI-MÊME :
+   Problème : Le fichier partait dans "Téléchargements" par défaut, impossible d'écrire silencieusement dans F:\_www\export à cause de la sécurité du navigateur.
+   Correction : Intégration de l'API window.showSaveFilePicker() pour ouvrir la boîte de dialogue "Enregistrer sous" et laisser l'utilisateur pointer vers son dossier.
+*/
 
 window.addEventListener('DOMContentLoaded', () => {
 
@@ -150,6 +158,62 @@ window.addEventListener('DOMContentLoaded', () => {
             }).catch(() => { });
         });
     });
+
+    // --- NOUVELLE FONCTION D'EXPORT SVG ---
+    const btnExportSvg = document.getElementById('btn-export-svg');
+    if (btnExportSvg) {
+        btnExportSvg.addEventListener('click', async () => {
+            const activeObject = document.querySelector('.persona-svg.active');
+            if (!activeObject) return;
+
+            const svgDoc = getSvgDocument(activeObject);
+            if (!svgDoc) {
+                console.error("Impossible d'accéder au document SVG pour l'export.");
+                const originalText = btnExportSvg.textContent;
+                btnExportSvg.textContent = 'Erreur lors de l\'exportation';
+                setTimeout(() => { btnExportSvg.textContent = originalText; }, 3000);
+                return;
+            }
+
+            const serializer = new XMLSerializer();
+            let source = serializer.serializeToString(svgDoc.documentElement);
+
+            if (!source.match(/^<svg[^>]+xmlns="http\:\/\/www\.w3\.org\/2000\/svg"/)) {
+                source = source.replace(/^<svg/, '<svg xmlns="http://www.w3.org/2000/svg"');
+            }
+
+            const savedPersonaId = localStorage.getItem('selected-persona-id') || 'persona-homme';
+            const nomFichier = `export-${savedPersonaId}.svg`;
+
+            try {
+                // Ouvre la boîte de dialogue Enregistrer sous
+                const handle = await window.showSaveFilePicker({
+                    suggestedName: nomFichier,
+                    types: [{
+                        description: 'Fichier SVG vectoriel',
+                        accept: { 'image/svg+xml': ['.svg'] }
+                    }]
+                });
+
+                // Écriture du fichier à l'emplacement choisi par l'utilisateur
+                const writable = await handle.createWritable();
+                await writable.write(source);
+                await writable.close();
+
+                // Retour visuel
+                const originalText = btnExportSvg.textContent;
+                btnExportSvg.textContent = 'Export sauvegardé dans ton dossier !';
+                setTimeout(() => { btnExportSvg.textContent = originalText; }, 3000);
+
+            } catch (error) {
+                // L'utilisateur a annulé ou fermé la fenêtre
+                if (error.name !== 'AbortError') {
+                    console.error("Erreur de sauvegarde :", error);
+                }
+            }
+        });
+    }
+    // --------------------------------------
 
     function restoreAndInit() {
         Object.keys(COLOR_MAPPING).forEach(inputId => {

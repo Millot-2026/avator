@@ -108,9 +108,26 @@ body {
     background: none;
 }
 
+.btn-copier {
+    background: #505050;
+    border: none;
+    color: #fff;
+    padding: 8px 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+
+.btn-copier:hover {
+    background: #00bfff;
+    color: #000;
+}
+
 .model-selector {
     display: flex;
-    gap: 15px;
+    gap: 10px;
     margin-top: 5px;
 }
 
