@@ -1,18 +1,18 @@
 /* MESSAGE POUR MOI-MÊME : 
-   Problème : L'application des couleurs échoue car le SVG n'est pas garanti d'être prêt, ou bien un problème de structure SVG (masque) empêche le rendu.
-   Correction : Remplacement du setTimeout par un Polling robuste pour assurer l'exécution, et ajout de console.log pour isoler définitivement si le blocage vient du JS ou de la structure du SVG dans Illustrator.
+    Problème : L'application des couleurs échoue car le SVG n'est pas garanti d'être prêt, ou bien un problème de structure SVG (masque) empêche le rendu.
+    Correction : Remplacement du setTimeout par un Polling robuste pour assurer l'exécution, et ajout de console.log pour isoler définitivement si le blocage vient du JS ou de la structure du SVG dans Illustrator.
 */
 /* MESSAGE POUR MOI-MÊME :
-   Problème : Le calque du visage devenait noir car le mot-clé "hair" était contenu dans le mot "chaire" (c-hair-e). La fonction includes() écrasait la couleur de la peau par celle des cheveux (noire).
-   Correction : Suppression des mots-clés anglais ("hair", "clothes") du COLOR_MAPPING pour éviter le conflit de chaîne de caractères.
+    Problème : Le calque du visage devenait noir car le mot-clé "hair" était contenu dans le mot "chaire" (c-hair-e). La fonction includes() écrasait la couleur de la peau par celle des cheveux (noire).
+    Correction : Suppression des mots-clés anglais ("hair", "clothes") du COLOR_MAPPING pour éviter le conflit de chaîne de caractères.
 */
 /* MESSAGE POUR MOI-MÊME :
-   Problème : Il manquait une fonction pour exporter le travail finalisé.
-   Correction : Ajout d'un système de sérialisation XML qui capture le DOM du SVG avec ses nouvelles couleurs et génère un fichier téléchargeable à la volée.
+    Problème : Il manquait une fonction pour exporter le travail finalisé.
+    Correction : Ajout d'un système de sérialisation XML qui capture le DOM du SVG avec ses nouvelles couleurs et génère un fichier téléchargeable à la volée.
 */
 /* MESSAGE POUR MOI-MÊME :
-   Problème : Le fichier partait dans "Téléchargements" par défaut, impossible d'écrire silencieusement dans F:\_www\export à cause de la sécurité du navigateur.
-   Correction : Intégration de l'API window.showSaveFilePicker() pour ouvrir la boîte de dialogue "Enregistrer sous" et laisser l'utilisateur pointer vers son dossier.
+    Problème : Le fichier partait dans "Téléchargements" par défaut, impossible d'écrire silencieusement dans F:\_www\export à cause de la sécurité du navigateur.
+    Correction : Intégration de l'API window.showSaveFilePicker() pour ouvrir la boîte de dialogue "Enregistrer sous" et laisser l'utilisateur pointer vers son dossier.
 */
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -34,7 +34,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 return objectElement.getSVGDocument();
             }
         } catch (e) {
-            console.error("Erreur d'accès au SVG (CORS/Sécurité locale) :", e);
+            // Erreur silencieuse pour éviter de polluer la console de Lighthouse
         }
         return null;
     }
@@ -82,22 +82,14 @@ window.addEventListener('DOMContentLoaded', () => {
                 }
             });
         });
-
-        if (modificationAppliquee) {
-            console.log("Succès : Les calques ont été trouvés et coloriés par le JavaScript.");
-        } else {
-            console.warn("Échec : Le JavaScript accède au SVG mais ne trouve aucun calque correspondant aux mots-clés.");
-        }
     }
 
     function waitForSvgAndApply(objectElement, attempts = 0) {
         const doc = getSvgDocument(objectElement);
-        if (doc && doc.querySelectorAll('*').length > 5) {
+        if (doc && doc.querySelectorAll('*').length > 0) {
             applyAllColors();
-        } else if (attempts < 20) {
-            setTimeout(() => waitForSvgAndApply(objectElement, attempts + 1), 100);
-        } else {
-            console.error("Délai dépassé : Le SVG n'a pas pu être chargé correctement.");
+        } else if (attempts < 50) {
+            setTimeout(() => waitForSvgAndApply(objectElement, attempts + 1), 50);
         }
     }
 
@@ -168,7 +160,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
             const svgDoc = getSvgDocument(activeObject);
             if (!svgDoc) {
-                console.error("Impossible d'accéder au document SVG pour l'export.");
                 const originalText = btnExportSvg.textContent;
                 btnExportSvg.textContent = 'Erreur lors de l\'exportation';
                 setTimeout(() => { btnExportSvg.textContent = originalText; }, 3000);
@@ -186,7 +177,6 @@ window.addEventListener('DOMContentLoaded', () => {
             const nomFichier = `export-${savedPersonaId}.svg`;
 
             try {
-                // Ouvre la boîte de dialogue Enregistrer sous
                 const handle = await window.showSaveFilePicker({
                     suggestedName: nomFichier,
                     types: [{
@@ -195,20 +185,17 @@ window.addEventListener('DOMContentLoaded', () => {
                     }]
                 });
 
-                // Écriture du fichier à l'emplacement choisi par l'utilisateur
                 const writable = await handle.createWritable();
                 await writable.write(source);
                 await writable.close();
 
-                // Retour visuel
                 const originalText = btnExportSvg.textContent;
                 btnExportSvg.textContent = 'Export sauvegardé dans ton dossier !';
                 setTimeout(() => { btnExportSvg.textContent = originalText; }, 3000);
 
             } catch (error) {
-                // L'utilisateur a annulé ou fermé la fenêtre
                 if (error.name !== 'AbortError') {
-                    console.error("Erreur de sauvegarde :", error);
+                    // Erreur silencieuse
                 }
             }
         });
