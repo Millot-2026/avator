@@ -4,22 +4,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Avatar Makor - Générateur</title>
+    <title>Avatar Makor - Générateur de personnages en ligne</title>
+    <meta name="description" content="Créez et personnalisez facilement vos avatars vectoriels avec notre générateur en ligne gratuit.">
+    <link rel="canonical" href="http://localhost/avtor/">
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
-    <div class="app-container">
+    <main class="app-container">
+        <h1 class="visually-hidden">Générateur d'avatars - Avatar Makor</h1>
         <div class="avatar-container">
             <object id="persona-homme" data="images/IDENTITE-PERSONA-HOMME.svg" type="image/svg+xml"
-                class="avatar-layer persona-svg active"></object>
+                class="avatar-layer persona-svg active" aria-label="Avatar du personnage homme">
+                Votre navigateur ne prend pas en charge les SVG.
+            </object>
             <object id="persona-femme" data="images/IDENTITE-PERSONA-FEMME.svg" type="image/svg+xml"
-                class="avatar-layer persona-svg" style="display:none;"></object>
+                class="avatar-layer persona-svg" style="display:none;" aria-label="Avatar du personnage femme">
+                Votre navigateur ne prend pas en charge les SVG.
+            </object>
             <object id="persona-garcon" data="images/IDENTITE-PERSONA-GARCON.svg" type="image/svg+xml"
-                class="avatar-layer persona-svg" style="display:none;"></object>
+                class="avatar-layer persona-svg" style="display:none;" aria-label="Avatar du personnage garçon">
+                Votre navigateur ne prend pas en charge les SVG.
+            </object>
             <object id="persona-fille" data="images/IDENTITE-PERSONA-FILLE.svg" type="image/svg+xml"
-                class="avatar-layer persona-svg" style="display:none;"></object>
+                class="avatar-layer persona-svg" style="display:none;" aria-label="Avatar du personnage fille">
+                Votre navigateur ne prend pas en charge les SVG.
+            </object>
         </div>
 
         <div class="controls-container">
@@ -99,7 +110,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </main>
 
     <script src="js/script.js?v=18"></script>
 </body>
